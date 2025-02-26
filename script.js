@@ -3,33 +3,33 @@ document.getElementById('reveal-btn').addEventListener('click', function() {
     const photoContainer = document.getElementById('photo-container');
     const footer = document.getElementById('footer');
     const revealButton = document.getElementById('reveal-btn');
-    const title = document.getElementById('page-title'); 
+    const spotifyLink = document.getElementById('spotify-link');
+    const title = document.getElementById('page-title');
+    const countdownElement = document.getElementById('countdown'); // Referência para o contador
 
-    
     container.style.transition = 'opacity 1s ease';
     container.style.opacity = '0';
     revealButton.style.transition = 'opacity 1s ease';
-    revealButton.style.opacity = '0'; 
+    revealButton.style.opacity = '0';
 
-    
     setTimeout(() => {
-        title.classList.add('show-title'); 
         photoContainer.style.display = 'block';
         footer.style.display = 'block';
+        spotifyLink.style.display = 'block';
+        title.classList.add('show-title');
 
-       
-        rotateImage(270);  
-        resizeImage(200); 
+        rotateImage(270);
+        resizeImage(270);
 
-       
-        startCountdown('2023-06-27T00:00:00'); 
+        // Aqui inicia o contador de tempo
+        startCountdown('2023-06-27T00:00:00');  // Defina a data de alvo para o countdown
         startHeartRain();
-    }, 1000);
+    }, 1000); // Atraso para a exibição dos elementos
 });
 
+// Função para a chuva de corações
 function startHeartRain() {
     const heartsContainer = document.getElementById('hearts');
-    
     setInterval(() => {
         const heart = document.createElement('div');
         heart.textContent = '❤️';
@@ -41,13 +41,13 @@ function startHeartRain() {
 
         heartsContainer.appendChild(heart);
 
-     
         setTimeout(() => {
             heart.remove();
         }, 3000);
     }, 200);
 }
 
+// Função do countdown
 function startCountdown(targetDate) {
     const countdownElement = document.getElementById('countdown');
     const target = new Date(targetDate).getTime();
@@ -71,14 +71,21 @@ function startCountdown(targetDate) {
     }, 1000);
 }
 
+// Função para rotacionar a imagem
 function rotateImage(degrees) {
     const image = document.getElementById('photo');
-    image.style.transition = 'transform 1s'; 
-    image.style.transform = `rotate(${degrees}deg)`; 
+    image.style.transition = 'transform 1s';
+    image.style.transform = `rotate(${degrees}deg)`;
 }
 
+// Função para redimensionar a imagem
 function resizeImage(size) {
     const image = document.getElementById('photo');
-    image.style.width = `${size}px`;  
-    image.style.height = 'auto';  
+    image.style.width = `${size}px`;
+    image.style.height = 'auto';
 }
+
+// Adiciona o evento de clique na imagem para redirecionar ao Spotify
+document.getElementById('photo').addEventListener('click', function() {
+    window.location.href = 'https://open.spotify.com/track/2p3QvyvrdHGntOeBwQNJQP?si=416bd0c37dfe4c92';  // Link do Spotify
+});
