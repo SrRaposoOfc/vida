@@ -47,6 +47,31 @@ function startHeartRain() {
     }, 200);
 }
 
+// Função para criar o fundo estrelado
+function createStars() {
+    const starfield = document.createElement('div');
+    starfield.id = 'starfield';
+    document.body.appendChild(starfield);
+
+    const numberOfStars = 200; // Quantidade de estrelas
+    for (let i = 0; i < numberOfStars; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+
+        // Define a posição aleatória das estrelas
+        star.style.left = `${Math.random() * 100}vw`; // Largura total da tela
+        star.style.top = `${Math.random() * 100}vh`;  // Altura total da tela
+
+        // Define um atraso aleatório para o "twinkle" de cada estrela
+        star.style.animationDelay = `${Math.random() * 3}s`;
+
+        starfield.appendChild(star);
+    }
+}
+
+// Chama a função para criar as estrelas
+createStars();
+
 // Função do countdown
 function startCountdown(targetDate) {
     const countdownElement = document.getElementById('countdown');
