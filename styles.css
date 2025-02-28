@@ -46,7 +46,7 @@ body {
     cursor: pointer;
     transition: transform 0.2s;
     font-size: 30px;
-    margin-top: -350px;
+    margin-top: -500px;
 }
 
 #sun-icon:hover, #moon-icon:hover {
