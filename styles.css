@@ -7,7 +7,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(13, 0, 26, 0.9);
+    background-color: rgba(13, 0, 26, 0.9); /* Cor de fundo escuro para o modo noturno */
     color: white;
     height: 100vh;
     display: flex;
@@ -16,6 +16,79 @@ body {
     overflow: hidden;
     text-align: center;
     flex-direction: column;
+    position: relative;
+    transition: background-color 0.3s, color 0.3s, background-image 0.3s; /* Transições mais suaves */
+}
+
+#mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    z-index: 100;
+}
+
+#sun-icon, #moon-icon {
+    padding: 10px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+#sun-icon:hover, #moon-icon:hover {
+    transform: scale(1.2);
+}
+
+#sun-icon {
+    display: none;
+}
+
+#moon-icon {
+    display: block;
+}
+
+body.light-mode {
+    background: linear-gradient(135deg, #a0f4ff, #98f5ff); /* Gradiente de azul claro no modo claro */
+    color: #333;
+}
+
+body.light-mode #sun-icon {
+    display: block;
+}
+
+body.light-mode #moon-icon {
+    display: none;
+}
+
+/* Nuvens no modo claro e escuro */
+#clouds {
+    position: absolute;
+    top: 0;
+    color: #818181;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.cloud {
+    position: absolute;
+    width: 200px;
+    height: 60px;
+    color: rgb(255, 255, 255);
+    background: rgb(255, 255, 255);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    animation: moveClouds 60s linear infinite;
+    opacity: 0.6;
+}
+
+body.light-mode #clouds .cloud {
+    opacity: 0.4; /* Nuvens mais suaves no modo claro */
+}
+
+body.dark-mode #clouds .cloud {
+    opacity: 0.6; /* Nuvens mais evidentes no modo escuro */
 }
 
 .container {
@@ -28,6 +101,16 @@ h1 {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #ffffff;
     opacity: 0;
+    position: absolute;
+    top: 10px;
+    transition: opacity 1s ease;
+}
+
+body.light-mode h1 {
+    font-size: 20px;
+    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #6e008a;
     position: absolute;
     top: 10px;
     transition: opacity 1s ease;
@@ -101,10 +184,22 @@ iframe {
     margin-top: 20px;
 }
 
+body.light-mode #text-below-photo {
+    font-size: 11px;
+    color: #000000;
+    margin-top: 20px;
+}
+
 #text-below-countdown {
     font-size: 10px;
     color: #949494;
     margin-top: 10px;
+}
+
+body.light-mode #text-below-countdown {
+    font-size: 10px;
+    color: #000000;
+    margin-top: 20px;
 }
 
 #footer {
@@ -114,6 +209,19 @@ iframe {
     transform: translateX(-50%);
     font-size: 15px;
     color: #fff;
+    z-index: 10;
+    text-align: center;
+    padding: 10px 20px;
+    width: 100%;
+}
+
+body.light-mode #footer {
+    position: fixed;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 15px;
+    color: #4d4d4d;
     z-index: 10;
     text-align: center;
     padding: 10px 20px;
@@ -153,18 +261,28 @@ iframe {
     position: absolute;
     width: 3px;
     height: 3px;
-    background-color: white;
+    background-color: #f7f8ce;
     border-radius: 50%;
     opacity: 0;
     animation: twinkle 3s infinite ease-in-out;
 }
 
+/* Efeitos de animação */
 @keyframes fadeIn {
     0% {
         opacity: 0;
     }
     100% {
         opacity: 1;
+    }
+}
+
+@keyframes moveClouds {
+    0% {
+        left: -200px;
+    }
+    100% {
+        left: 100%;
     }
 }
 

@@ -1,3 +1,53 @@
+// Alternar entre modos claro e escuro
+const sunIcon = document.getElementById('sun-icon');
+const moonIcon = document.getElementById('moon-icon');
+const body = document.body;
+const cloudsContainer = document.getElementById('clouds'); // Contêiner das nuvens
+const starfield = document.createElement('div'); // Para as estrelas
+starfield.id = 'starfield';
+
+// Verifica se o modo claro ou escuro está ativo
+const currentMode = localStorage.getItem('mode');
+if (currentMode === 'light') {
+    body.classList.add('light-mode');
+    moonIcon.style.display = "none";
+    sunIcon.style.display = "block";
+    cloudsContainer.style.display = "none"; // Nuvens inicialmente escondidas
+    document.body.appendChild(starfield); // Adiciona estrelas no modo escuro
+    createStars(); // Gera as estrelas
+} else {
+    moonIcon.style.display = "block";
+    sunIcon.style.display = "none";
+    document.body.appendChild(starfield); // Adiciona estrelas no modo escuro
+    createStars(); // Gera as estrelas
+}
+
+// Alterna o tema entre claro e escuro
+function toggleMode() {
+    if (body.classList.contains('light-mode')) {
+        body.classList.remove('light-mode');
+        localStorage.setItem('mode', 'dark');
+        sunIcon.style.display = "none";
+        moonIcon.style.display = "block";
+        cloudsContainer.style.display = "none"; // Esconde as nuvens no modo escuro
+        starfield.remove(); // Remove as estrelas no modo escuro
+        document.body.appendChild(starfield); // Adiciona estrelas no modo escuro
+        createStars(); // Gera as estrelas
+    } else {
+        body.classList.add('light-mode');
+        localStorage.setItem('mode', 'light');
+        sunIcon.style.display = "block";
+        moonIcon.style.display = "none";
+        cloudsContainer.style.display = "block"; // Exibe as nuvens no modo claro
+        createClouds(); // Gera as nuvens
+        starfield.remove(); // Remove as estrelas no modo claro
+    }
+}
+
+sunIcon.addEventListener('click', toggleMode);
+moonIcon.addEventListener('click', toggleMode);
+
+// Revealing de elementos ao clicar no botão
 document.getElementById('reveal-btn').addEventListener('click', function() {
     const container = document.querySelector('.container');
     const photoContainer = document.getElementById('photo-container');
@@ -49,10 +99,6 @@ function startHeartRain() {
 
 // Função para criar o fundo estrelado
 function createStars() {
-    const starfield = document.createElement('div');
-    starfield.id = 'starfield';
-    document.body.appendChild(starfield);
-
     const numberOfStars = 200; // Quantidade de estrelas
     for (let i = 0; i < numberOfStars; i++) {
         const star = document.createElement('div');
@@ -68,9 +114,6 @@ function createStars() {
         starfield.appendChild(star);
     }
 }
-
-// Chama a função para criar as estrelas
-createStars();
 
 // Função do countdown
 function startCountdown(targetDate) {
@@ -114,3 +157,33 @@ function resizeImage(size) {
 document.getElementById('photo').addEventListener('click', function() {
     window.location.href = 'https://open.spotify.com/track/2p3QvyvrdHGntOeBwQNJQP?si=416bd0c37dfe4c92';  // Link do Spotify
 });
+
+// Gerar nuvens aleatórias
+function createClouds() {
+    let cloudCount = 0;
+    const numberOfClouds = 4; // Número de nuvens aleatórias por vez
+    const cloudMinDuration = 60; // Duração mínima da animação (em segundos)
+    const cloudMaxDuration = 120; // Duração máxima da animação (em segundos)
+
+    setInterval(() => {
+        if (cloudCount < numberOfClouds) {
+            const cloud = document.createElement('div');
+            cloud.classList.add('cloud');
+
+            // Posição aleatória vertical (topo)
+            const topPosition = Math.random() * 100 + 'vh';
+            cloud.style.top = topPosition;
+
+            // Posição aleatória horizontal (left)
+            const leftPosition = Math.random() * 100 + '%';
+            cloud.style.left = leftPosition;
+
+            // Duração aleatória da animação
+            const animationDuration = Math.random() * (cloudMaxDuration - cloudMinDuration) + cloudMinDuration + 's';
+            cloud.style.animationDuration = animationDuration;
+
+            cloudsContainer.appendChild(cloud);
+            cloudCount++;
+        }
+    }, 10000); // A cada 1 segundo, adicionar 4 nuvens
+}
