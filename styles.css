@@ -29,16 +29,14 @@ body {
 
 /* Botão de alternância de modo */
 #mode-toggle {
-    position: absolute;
-    top: 20px;
-    right: 50px;
+    position: relative;
     font-size: 30px;
     z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 10px;
     flex-direction: column;
+    margin-top: 10px; /* Ajusta a distância do título */
 }
 
 #sun-icon, #moon-icon {
