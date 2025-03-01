@@ -19,7 +19,9 @@ body {
     overflow: hidden; /* Remove scroll */
     text-align: center;
     flex-direction: column;
-    position: relative;
+    position: fixed; /* Previne scroll/bounce em iOS */
+    top: 0;
+    left: 0;
     transition: all 0.5s ease;
     margin: 0;
     padding: 0;
@@ -262,9 +264,11 @@ body.light-mode #text-below-countdown {
 /* Media Queries para ajustes específicos */
 @media (max-width: 768px) {
     body {
+        position: fixed;
         padding: 5px 0;
+        height: 100vh;
         min-height: 100vh;
-        height: auto;
+        overflow: hidden;
     }
 
     .cloud {
@@ -292,7 +296,8 @@ body.light-mode #text-below-countdown {
     }
 
     .container {
-        margin-bottom: 10px; /* Reduzido de 20px para 10px */
+        height: 100%;
+        overflow: hidden;
     }
     
     #text-below-countdown {

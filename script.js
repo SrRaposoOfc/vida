@@ -55,7 +55,16 @@ document.getElementById('reveal-btn').addEventListener('click', function() {
     const revealButton = document.getElementById('reveal-btn');
     const spotifyLink = document.getElementById('spotify-link');
     const title = document.getElementById('page-title');
-    const countdownElement = document.getElementById('countdown'); // Referência para o contador
+
+    // Previne comportamento de bounce/scroll em dispositivos móveis
+    document.body.style.position = 'fixed';
+    document.body.style.overflow = 'hidden';
+    document.documentElement.style.overflow = 'hidden'; // HTML element
+    
+    // Desativa eventos de touch que podem causar scroll
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
 
     container.style.transition = 'opacity 1s ease';
     container.style.opacity = '0';
@@ -68,13 +77,29 @@ document.getElementById('reveal-btn').addEventListener('click', function() {
         spotifyLink.style.display = 'block';
         title.classList.add('show-title');
 
-        rotateImage(270);
-        resizeImage(270);
+        // Ajusta o layout após revelar o conteúdo
+        container.style.opacity = '1';
+        
+        // Força um reflow/repaint para garantir que tudo está no lugar
+        window.requestAnimationFrame(() => {
+            rotateImage(270);
+            resizeImage(270);
+        });
 
-        // Aqui inicia o contador de tempo
-        startCountdown('2023-06-27T00:00:00');  // Defina a data de alvo para o countdown
+        startCountdown('2023-06-27T00:00:00');
         startHeartRain();
-    }, 1000); // Atraso para a exibição dos elementos
+    }, 1000);
+});
+
+// Adicionar função para prevenir zoom em dispositivos móveis
+document.addEventListener('gesturestart', function(e) {
+    e.preventDefault();
+});
+
+// Prevenir double-tap zoom em iOS
+document.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    e.target.click();
 });
 
 // Função para a chuva de corações
