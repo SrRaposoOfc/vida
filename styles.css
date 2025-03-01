@@ -36,12 +36,13 @@ body {
 
 /* Botão de alternância de modo */
 #mode-toggle {
-    position: relative;
-    margin: 15px 0;
-    font-size: 35px; /* Tamanho fixo para o emoji */
+    position: absolute;
+    font-size: 35px;
     z-index: 1000;
     display: flex;
     gap: 15px;
+    top: 20px;
+    right: 20px;
 }
 
 #sun-icon, #moon-icon {
@@ -148,6 +149,7 @@ button:hover {
     justify-content: center;
     width: 100%;
     max-width: 800px;
+    margin-bottom: 100px; /* Espaço para o texto fixo */
 }
 
 /* Container da foto */
@@ -215,6 +217,9 @@ body.light-mode #text-below-countdown {
     font-size: clamp(10px, 2vw, 12px);
     color: #bdc3c7;
     line-height: 1.8;
+    max-width: 800px;
+    margin: 15px auto 30px;
+    padding: 0 20px;
 }
 
 /* Estrelas e animações */
@@ -278,6 +283,14 @@ body.light-mode #text-below-countdown {
     #clouds {
         height: 200%;
     }
+
+    #mode-toggle {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 15px 0;
+        justify-content: center;
+    }
 }
 
 @media (max-height: 700px) {
@@ -288,4 +301,13 @@ body.light-mode #text-below-countdown {
     button {
         margin-top: 15px;
     }
+}
+
+/* Remover estilos antigos do footer */
+#footer {
+    display: block;
+}
+
+body.light-mode #text-below-countdown {
+    color: #34495e;
 }
