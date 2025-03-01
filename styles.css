@@ -316,7 +316,13 @@ body.light-mode #text-below-countdown {
     }
     
     #text-below-countdown {
-        margin-bottom: 3px;
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        margin: 0;
+        padding: 0 10px;
     }
 
     #page-title {
