@@ -36,7 +36,7 @@ body {
     letter-spacing: 1px;
 }
 
-/* Botão de alternância de modo */
+/* Botão de alternância de modo - versão desktop */
 #mode-toggle {
     position: absolute;
     font-size: 35px;
@@ -288,10 +288,12 @@ body.light-mode #text-below-countdown {
     }
 
     #mode-toggle {
-        position: static;
-        margin: 10px 0;
-        justify-content: center;
+        position: static; /* Remove posicionamento absoluto */
+        top: auto;
+        right: auto;
+        margin: 10px auto; /* Centraliza horizontalmente */
         font-size: 30px;
+        order: 1; /* Define ordem específica */
     }
 
     #page-title {
@@ -303,14 +305,14 @@ body.light-mode #text-below-countdown {
     }
 
     #photo-container {
-        margin-top: 5px;
+        order: 2; /* Foto vem depois do botão theme */
     }
 
     .container {
-        height: 100%;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
+        min-height: 100vh;
+        justify-content: flex-start;
     }
     
     #text-below-countdown {
@@ -322,7 +324,9 @@ body.light-mode #text-below-countdown {
     }
 
     #footer {
-        margin-top: 10px;
+        order: 3; /* Footer vem por último */
+        position: relative; /* Remove qualquer posicionamento absoluto */
+        margin-top: auto; /* Empurra para baixo */
     }
 }
 
