@@ -7,8 +7,8 @@
 
 /* Corpo da página */
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg,#0d001ae6, #2a0252e6); 
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(135deg, #1a0033, #4a0080);
     color: white;
     height: 100vh;
     display: flex;
@@ -18,38 +18,44 @@ body {
     text-align: center;
     flex-direction: column;
     position: relative;
-    transition: background-color 0.3s, color 0.3s, background-image 0.3s; /* Transições mais suaves */
+    transition: all 0.5s ease;
 }
 
 /* Título da página */
 #page-title {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: clamp(2rem, 5vw, 3rem);
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 0 15px;
 }
 
 /* Botão de alternância de modo */
 #mode-toggle {
     position: absolute;
-    top: 30%; /* Centraliza entre o título e o botão */
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    padding: 5px; /* Reduz a área de clique */
-    font-size: 10px;
+    padding: 8px;
+    font-size: clamp(10px, 2vw, 12px);
     z-index: 100;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    gap: 15px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
 }
 
 #sun-icon, #moon-icon {
-    padding: 10px; /* Reduz a área de clique */
+    padding: clamp(8px, 2vw, 12px);
     cursor: pointer;
-    font-size: 30px;
-    transition: transform 0.2s;
+    font-size: clamp(25px, 4vw, 35px);
+    transition: all 0.3s ease;
 }
 
 #sun-icon:hover, #moon-icon:hover {
-    transform: scale(1.2);
+    transform: scale(1.3) rotate(15deg);
 }
 
 #sun-icon {
@@ -62,8 +68,8 @@ body {
 
 /* Modo claro */
 body.light-mode {
-    background: linear-gradient(135deg, #0162af, #3ea6e3);
-    color: #333;
+    background: linear-gradient(135deg, #3498db, #2ecc71);
+    color: #2c3e50;
 }
 
 body.light-mode #sun-icon {
@@ -83,61 +89,64 @@ body.light-mode #moon-icon {
     height: 100%;
     pointer-events: none;
     z-index: -1;
+    display: none;
+}
+
+body.light-mode #clouds {
+    display: block;
 }
 
 .cloud {
     position: absolute;
-    width: 200px;
-    height: 60px;
-    background: rgb(255, 255, 255);
-    border-radius: 50%;
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    width: 250px;
+    height: 80px;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 50px;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
     animation: moveClouds 60s linear infinite;
-    opacity: 0.6;
-}
-
-body.light-mode #clouds .cloud {
-    opacity: 0.4;
-}
-
-body.dark-mode #clouds .cloud {
-    opacity: 0.6;
+    opacity: 0.5;
+    filter: blur(2px);
 }
 
 /* Estilização do título */
 h1 {
-    font-size: 20px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 24px;
+    font-family: 'Montserrat', sans-serif;
     color: #ffffff;
     opacity: 0;
     position: absolute;
-    top: 10px;
-    transition: opacity 1s ease;
+    top: 20px;
+    transition: all 0.8s ease;
+    text-transform: uppercase;
 }
 
 body.light-mode h1 {
-    color: #6e008a;
+    color: #8e44ad;
 }
 
 h1.show-title {
     opacity: 1;
+    transform: translateY(10px);
 }
 
 /* Botões */
 button {
-    background-color: #8000ff;
+    background: linear-gradient(45deg, #8e44ad, #9b59b6);
     color: white;
     border: none;
-    padding: 15px 25px;
-    font-size: 1.2rem;
-    border-radius: 10px;
+    padding: 18px 35px;
+    font-size: 1.3rem;
+    border-radius: 30px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-top: 20px;
+    transition: all 0.4s ease;
+    margin-top: 25px;
+    box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
 }
 
 button:hover {
-    background-color: #9b3eff;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(142, 68, 173, 0.4);
+    background: linear-gradient(45deg, #9b59b6, #8e44ad);
 }
 
 /* Contêiner da foto */
@@ -146,21 +155,31 @@ button:hover {
 }
 
 #photo {
-    width: 300px;
+    width: min(350px, 90vw);
     height: auto;
-    margin-top: -40px;
+    margin-top: -30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease;
+}
+
+#photo:hover {
+    transform: scale(1.05);
 }
 
 /* Spotify */
 #spotify-container {
     display: flex;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 25px;
+    width: 100%;
+    padding: 0 15px;
 }
 
 iframe {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    max-width: 100%;
 }
 
 /* Contadores e textos */
@@ -170,27 +189,37 @@ iframe {
 }
 
 #countdown {
-    font-size: 12px;
-    font-weight: bold;
-    margin-top: 10px;
+    font-size: clamp(12px, 2vw, 14px);
+    font-weight: 600;
+    margin-top: 15px;
     animation-delay: 2s;
+    letter-spacing: 1px;
+    padding: 0 15px;
 }
 
 #text-below-photo {
-    font-size: 11px;
-    color: #949494;
-    margin-top: 20px;
+    font-size: clamp(11px, 2vw, 13px);
+    color: #bdc3c7;
+    margin-top: 25px;
+    line-height: 1.6;
+    padding: 0 15px;
+    max-width: 90%;
+    margin: 25px auto 0;
 }
 
 body.light-mode #text-below-photo, 
 body.light-mode #text-below-countdown {
-    color: #000000;
+    color: #34495e;
 }
 
 #text-below-countdown {
-    font-size: 10px;
-    color: #949494;
-    margin-top: 10px;
+    font-size: clamp(10px, 2vw, 12px);
+    color: #bdc3c7;
+    margin-top: 15px;
+    line-height: 1.8;
+    padding: 0 15px;
+    max-width: min(800px, 90%);
+    margin: 15px auto;
 }
 
 /* Rodapé */
@@ -199,15 +228,18 @@ body.light-mode #text-below-countdown {
     bottom: 0;
     left: 50%;
     transform: translateX(-50%);
-    font-size: 15px;
-    color: #fff;
+    font-size: clamp(12px, 2vw, 16px);
+    color: #ecf0f1;
     text-align: center;
-    padding: 10px 20px;
+    padding: 15px;
     width: 100%;
+    background: rgba(0,0,0,0.05);
+    backdrop-filter: blur(2px);
 }
 
 body.light-mode #footer {
-    color: #4d4d4d;
+    color: #2c3e50;
+    background: rgba(255,255,255,0.1);
 }
 
 /* Estrelas e animações */
@@ -223,26 +255,62 @@ body.light-mode #footer {
 
 .star {
     position: absolute;
-    width: 3px;
-    height: 3px;
-    background-color: #f7f8ce;
+    width: 4px;
+    height: 4px;
+    background-color: #fff;
     border-radius: 50%;
     opacity: 0;
     animation: twinkle 3s infinite ease-in-out;
+    box-shadow: 0 0 10px #fff;
 }
 
 @keyframes fadeIn {
-    0% { opacity: 0; }
-    100% { opacity: 1; }
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes moveClouds {
-    0% { left: -200px; }
+    0% { left: -250px; }
     100% { left: 100%; }
 }
 
 @keyframes twinkle {
     0% { opacity: 0; transform: scale(1); }
-    50% { opacity: 1; transform: scale(1.2); }
+    50% { opacity: 1; transform: scale(1.3); }
     100% { opacity: 0; transform: scale(1); }
+}
+
+/* Media Queries para ajustes específicos */
+@media (max-width: 768px) {
+    body {
+        padding: 20px 0;
+    }
+
+    #mode-toggle {
+        top: 35%;
+    }
+
+    .cloud {
+        width: 150px;
+        height: 50px;
+    }
+
+    button {
+        padding: 15px 25px;
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-height: 700px) {
+    #mode-toggle {
+        top: 40%;
+    }
+
+    #page-title {
+        margin-bottom: 15px;
+    }
+
+    button {
+        margin-top: 15px;
+    }
 }
