@@ -9,17 +9,35 @@
 <body>
     <h1 id="page-title">Minha princesa 👑</h1> 
 
-    <div class="container">
-        <button id="reveal-btn">Clique aqui!</button>
-    </div>
+    <!-- Texto inicial -->
+    <p id="text-below-photo">Quer saber quanto tempo faz que te dedico meus "Eu te amo" para você? Então:</p>
+    
+    <!-- Contador -->
+    <div id="countdown"></div>
 
+    <!-- Container da foto -->
     <div id="photo-container" style="display: none;">
-        <img id="photo" src="imagem.jpg" alt="Surpresa" style="cursor: pointer;">
+        <img id="photo" src="imagem.jpg" alt="Surprisa" style="cursor: pointer;">
     </div>
 
-    <div id="spotify-link" style="display: none;">
+    <!-- Texto final - removido do footer -->
+    <p id="text-below-countdown">
+        Enfrentamos muitas coisas durante esse tempo que passamos juntos, depois de muito tempo conseguimos finalmente nos ver aos finais de semana.
+        Sabemos que brigas são normais e que não podemos deixar isso abalar nosso relacionamento.
+        Apesar de todo atrito que tivemos, temos e vamos ter, EU TE AMO, é um amor que realmente é sem explicação, é um amor tão imenso que estando com você horas parecem segundos.
+    </p>
+
+    <!-- Botão de tema -->
+    <div id="mode-toggle">
+        <span id="sun-icon">🌞</span>
+        <span id="moon-icon">🌙</span>
     </div>
 
+    <!-- Outros elementos -->
+    <div id="clouds">
+        <div class="cloud" style="top: 50px; animation-duration: 80s;"></div>
+        <div class="cloud" style="top: 200px; animation-duration: 120s;"></div>
+        <div class="cloud" style="top: 400px; animation-duration: 60s;"></div>
     <div id="footer" style="display: none;">
         <p id="text-below-photo">Quer saber quanto tempo faz que te dedico meus "Eu te amo" para você? Então:</p>
         <div id="countdown"></div>
