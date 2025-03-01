@@ -22,6 +22,15 @@ body {
     position: relative;
     transition: all 0.5s ease;
     padding: 20px 0;
+    max-width: 1200px; /* Limite máximo de largura */
+    margin: 0 auto; /* Centraliza o conteúdo */
+}
+
+.container {
+    width: 100%;
+    max-width: 1000px; /* Limite máximo para o container */
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
 /* Título da página */
@@ -157,9 +166,9 @@ button:hover {
 /* Contêiner da foto */
 #photo-container {
     display: none;
-    width: 100%;
-    max-width: 90vw;
+    max-width: 800px; /* Limite máximo baseado no tamanho da foto */
     margin: 0 auto;
+    width: 100%;
 }
 
 #photo {
@@ -179,7 +188,8 @@ button:hover {
 #spotify-container {
     display: flex;
     justify-content: center;
-    margin-top: 25px;
+    max-width: 800px; /* Mantém consistência com o container da foto */
+    margin: 25px auto 0;
     width: 100%;
     padding: 0 15px;
 }
@@ -224,8 +234,8 @@ body.light-mode #text-below-countdown {
     font-size: clamp(10px, 2vw, 12px);
     color: #bdc3c7;
     line-height: 1.8;
-    padding: 0 15px;
-    max-width: min(800px, 90%);
+    padding: 0 20px;
+    max-width: 800px; /* Mantém consistência com os outros elementos */
     margin: 15px auto 30px;
 }
 
