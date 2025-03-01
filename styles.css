@@ -8,7 +8,7 @@
 /* Corpo da página */
 body {
     font-family: Arial, sans-serif;
-    background-color: rgba(13, 0, 26, 0.9); /* Cor de fundo escuro para o modo noturno */
+    background: linear-gradient(135deg,#0d001ae6, #2a0252e6); 
     color: white;
     height: 100vh;
     display: flex;
@@ -29,22 +29,23 @@ body {
 
 /* Botão de alternância de modo */
 #mode-toggle {
-    position: relative;
-    font-size: 30px;
+    position: absolute;
+    top: 30%; /* Centraliza entre o título e o botão */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 5px; /* Reduz a área de clique */
+    font-size: 10px;
     z-index: 100;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction: column;
-    margin-top: 10px; /* Ajusta a distância do título */
 }
 
 #sun-icon, #moon-icon {
-    padding: 415px;
+    padding: 10px; /* Reduz a área de clique */
     cursor: pointer;
-    transition: transform 0.2s;
     font-size: 30px;
-    margin-top: -500px;
+    transition: transform 0.2s;
 }
 
 #sun-icon:hover, #moon-icon:hover {
@@ -61,7 +62,7 @@ body {
 
 /* Modo claro */
 body.light-mode {
-    background: linear-gradient(135deg, #a0f4ff, #98f5ff);
+    background: linear-gradient(135deg, #0162af, #3ea6e3);
     color: #333;
 }
 

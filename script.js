@@ -185,5 +185,5 @@ function createClouds() {
             cloudsContainer.appendChild(cloud);
             cloudCount++;
         }
-    }, 10000); // A cada 1 segundo, adicionar 4 nuvens
+    }, 15000); // A cada 1 segundo, adicionar 4 nuvens
 }
