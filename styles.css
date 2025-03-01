@@ -289,7 +289,7 @@ body.light-mode #text-below-countdown {
 
     #mode-toggle {
         position: static;
-        margin: 10px 0;
+        margin: 5px 0;
         justify-content: center;
         font-size: 30px;
     }
@@ -303,13 +303,10 @@ body.light-mode #text-below-countdown {
     }
 
     #photo-container {
-        order: 3;
+        margin-top: 10px;
     }
 
     .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
         height: 100%;
         overflow: hidden;
     }
