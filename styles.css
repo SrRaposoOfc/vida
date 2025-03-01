@@ -288,21 +288,30 @@ body.light-mode #text-below-countdown {
     }
 
     #mode-toggle {
-        position: relative;
-        top: 0;
-        right: 0;
-        margin: 5px 0 15px;
+        position: static;
+        margin: 10px 0;
         justify-content: center;
-        order: -1;
+        font-size: 30px;
+    }
+
+    #page-title {
+        order: 1;
+    }
+
+    #mode-toggle {
+        order: 2;
+    }
+
+    #photo-container {
+        order: 3;
     }
 
     .container {
-        height: 100%;
-        overflow: hidden;
         display: flex;
         flex-direction: column;
-        justify-content: flex-start;
-        padding-top: 10px;
+        align-items: center;
+        height: 100%;
+        overflow: hidden;
     }
     
     #text-below-countdown {
