@@ -28,7 +28,7 @@ body {
 /* Título da página */
 #page-title {
     font-size: clamp(2rem, 5vw, 3rem);
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
     font-weight: 700;
     letter-spacing: 1px;
@@ -124,12 +124,12 @@ button {
     background: linear-gradient(45deg, #8e44ad, #9b59b6);
     color: white;
     border: none;
-    padding: 18px 35px;
+    padding: 15px 30px;
     font-size: 1.3rem;
     border-radius: 30px;
     cursor: pointer;
     transition: all 0.4s ease;
-    margin-top: 25px;
+    margin-top: 10px;
     box-shadow: 0 4px 15px rgba(142, 68, 173, 0.3);
     width: auto;
     max-width: 90%;
@@ -149,7 +149,7 @@ button:hover {
     justify-content: center;
     width: 100%;
     max-width: 800px;
-    margin-bottom: 100px; /* Espaço para o texto fixo */
+    margin-bottom: 0;
 }
 
 /* Container da foto */
@@ -176,9 +176,9 @@ button:hover {
     display: flex;
     justify-content: center;
     max-width: 800px; /* Mantém consistência com o container da foto */
-    margin: 25px auto 0;
+    margin: 5px auto 0;
     width: 100%;
-    padding: 0 15px;
+    padding: 0 10px;
 }
 
 iframe {
@@ -188,16 +188,16 @@ iframe {
 }
 
 /* Ajustes para textos e contadores */
-#countdown, #text-below-photo, #text-below-countdown {
-    max-width: 800px;
-    margin: 15px auto;
-    padding: 0 20px;
+#countdown, #text-below-photo {
+    margin: 1px auto;
+    padding: 0 10px;
 }
 
 #countdown {
     font-size: clamp(12px, 2vw, 14px);
     font-weight: 600;
-    margin-top: 15px;
+    margin-top: 3px;
+    line-height: 1.2;
     animation-delay: 2s;
     letter-spacing: 1px;
 }
@@ -205,7 +205,7 @@ iframe {
 #text-below-photo {
     font-size: clamp(11px, 2vw, 13px);
     color: #bdc3c7;
-    line-height: 1.6;
+    line-height: 1.3;
 }
 
 body.light-mode #text-below-photo, 
@@ -216,10 +216,9 @@ body.light-mode #text-below-countdown {
 #text-below-countdown {
     font-size: clamp(10px, 2vw, 12px);
     color: #bdc3c7;
-    line-height: 1.8;
-    max-width: 800px;
-    margin: 15px auto 30px;
-    padding: 0 20px;
+    line-height: 1.1;
+    margin: 1px auto 2px;
+    padding: 0 10px;
 }
 
 /* Estrelas e animações */
@@ -263,7 +262,7 @@ body.light-mode #text-below-countdown {
 /* Media Queries para ajustes específicos */
 @media (max-width: 768px) {
     body {
-        padding: 20px 0;
+        padding: 5px 0;
         min-height: 100vh;
         height: auto;
     }
@@ -274,7 +273,7 @@ body.light-mode #text-below-countdown {
     }
 
     button {
-        padding: 15px 25px;
+        padding: 12px 25px;
         font-size: 1.1rem;
         width: auto;
         max-width: 80%;
@@ -290,6 +289,14 @@ body.light-mode #text-below-countdown {
         right: 0;
         margin: 15px 0;
         justify-content: center;
+    }
+
+    .container {
+        margin-bottom: 10px; /* Reduzido de 20px para 10px */
+    }
+    
+    #text-below-countdown {
+        margin-bottom: 3px; /* Reduzido de 5px para 3px */
     }
 }
 
