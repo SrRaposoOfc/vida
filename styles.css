@@ -291,17 +291,26 @@ body.light-mode #text-below-countdown {
         position: relative;
         top: 0;
         right: 0;
-        margin: 15px 0;
+        margin: 5px 0 15px;
         justify-content: center;
+        order: -1;
     }
 
     .container {
         height: 100%;
         overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        padding-top: 10px;
     }
     
     #text-below-countdown {
-        margin-bottom: 3px; /* Reduzido de 5px para 3px */
+        margin-bottom: 3px;
+    }
+
+    #page-title {
+        margin-bottom: 0;
     }
 }
 
