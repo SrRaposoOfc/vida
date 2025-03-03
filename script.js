@@ -1,55 +1,84 @@
-document.getElementById('reveal-btn').addEventListener('click', function() {
-    const container = document.querySelector('.container');
-    const photoContainer = document.getElementById('photo-container');
-    const footer = document.getElementById('footer');
-    const revealButton = document.getElementById('reveal-btn');
-    const spotifyLink = document.getElementById('spotify-link');
-    const title = document.getElementById('page-title');
-    const countdownElement = document.getElementById('countdown'); 
-    
-    container.style.transition = 'opacity 1s ease';
-    container.style.opacity = '0';
-    revealButton.style.transition = 'opacity 1s ease';
-    revealButton.style.opacity = '0';
+// Configurações
+const CONFIG = {
+    countdownDate: '2023-06-27T00:00:00',
+    heartRainInterval: 200,
+    heartDuration: 3000,
+    imageRotation: 270,
+    imageSize: 270,
+    spotifyLink: 'https://open.spotify.com/track/2p3QvyvrdHGntOeBwQNJQP?si=416bd0c37dfe4c92'
+};
 
-    setTimeout(() => {
-        container.style.display = 'none';
-        revealButton.style.display = 'none';
-        photoContainer.style.display = 'block';
-        footer.style.display = 'block';
-        spotifyLink.style.display = 'block';
-        title.classList.add('show-title');
+// Elementos DOM
+const elements = {
+    container: document.querySelector('.container'),
+    photoContainer: document.getElementById('photo-container'),
+    footer: document.getElementById('footer'),
+    revealButton: document.getElementById('reveal-btn'),
+    spotifyLink: document.getElementById('spotify-link'),
+    title: document.getElementById('page-title'),
+    countdown: document.getElementById('countdown'),
+    hearts: document.getElementById('hearts'),
+    photo: document.getElementById('photo')
+};
 
-        rotateImage(270);
-        resizeImage(270);
-        
-        startCountdown('2023-06-27T00:00:00');  
-        startHeartRain();
-    }, 1000); 
-});
-
-function startHeartRain() {
-    const heartsContainer = document.getElementById('hearts');
-    setInterval(() => {
-        const heart = document.createElement('div');
-        heart.textContent = '❤️';
-        heart.style.position = 'absolute';
-        heart.style.fontSize = '30px';
-        heart.style.left = Math.random() * window.innerWidth + 'px';
-        heart.style.top = '-50px';
-        heart.style.animation = 'fall 3s linear forwards';
-
-        heartsContainer.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 3000);
-    }, 200);
+// Inicialização dos eventos
+function initializeEvents() {
+    elements.revealButton.addEventListener('click', handleReveal);
+    elements.photo.addEventListener('click', () => window.location.href = CONFIG.spotifyLink);
 }
 
-// Função do countdown
+// Manipuladores de eventos
+function handleReveal() {
+    fadeOutInitialElements();
+    setTimeout(showMainContent, 1000);
+}
+
+// Funções de animação
+function fadeOutInitialElements() {
+    const fadeOutTransition = 'opacity 1s ease';
+    elements.container.style.transition = fadeOutTransition;
+    elements.container.style.opacity = '0';
+    elements.revealButton.style.transition = fadeOutTransition;
+    elements.revealButton.style.opacity = '0';
+}
+
+function showMainContent() {
+    elements.container.style.display = 'none';
+    elements.revealButton.style.display = 'none';
+    elements.photoContainer.style.display = 'block';
+    elements.footer.style.display = 'block';
+    elements.spotifyLink.style.display = 'block';
+    elements.title.classList.add('show-title');
+
+    rotateImage(CONFIG.imageRotation);
+    resizeImage(CONFIG.imageSize);
+    
+    startCountdown(CONFIG.countdownDate);
+    startHeartRain();
+}
+
+// Sistema de chuva de corações
+function startHeartRain() {
+    setInterval(createHeart, CONFIG.heartRainInterval);
+}
+
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.textContent = '❤️';
+    Object.assign(heart.style, {
+        position: 'absolute',
+        fontSize: '30px',
+        left: `${Math.random() * window.innerWidth}px`,
+        top: '-50px',
+        animation: 'fall 3s linear forwards'
+    });
+
+    elements.hearts.appendChild(heart);
+    setTimeout(() => heart.remove(), CONFIG.heartDuration);
+}
+
+// Sistema de contagem regressiva
 function startCountdown(targetDate) {
-    const countdownElement = document.getElementById('countdown');
     const target = new Date(targetDate).getTime();
 
     const interval = setInterval(() => {
@@ -58,34 +87,37 @@ function startCountdown(targetDate) {
 
         if (distance < 0) {
             clearInterval(interval);
-            countdownElement.innerHTML = "A data chegou! 💖";
-        } else {
-            const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365.25));
-            const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44));
-            const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-            countdownElement.innerHTML = `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos, ${seconds} segundos.`;
+            elements.countdown.innerHTML = "A data chegou! 💖";
+            return;
         }
+
+        elements.countdown.innerHTML = formatTimeDistance(distance);
     }, 1000);
 }
 
-// Função para rotacionar a imagem
+function formatTimeDistance(distance) {
+    const times = {
+        years: Math.floor(distance / (1000 * 60 * 60 * 24 * 365.25)),
+        months: Math.floor((distance % (1000 * 60 * 60 * 24 * 365.25)) / (1000 * 60 * 60 * 24 * 30.44)),
+        days: Math.floor((distance % (1000 * 60 * 60 * 24 * 30.44)) / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((distance % (1000 * 60)) / 1000)
+    };
+
+    return `${times.years} anos, ${times.months} meses, ${times.days} dias, ${times.hours} horas, ${times.minutes} minutos, ${times.seconds} segundos.`;
+}
+
+// Funções de manipulação da imagem
 function rotateImage(degrees) {
-    const image = document.getElementById('photo');
-    image.style.transition = 'transform 1s ease';
-    image.style.transform = `rotate(${degrees}deg)`;
+    elements.photo.style.transition = 'transform 1s ease';
+    elements.photo.style.transform = `rotate(${degrees}deg)`;
 }
 
-// Função para redimensionar a imagem
 function resizeImage(size) {
-    const image = document.getElementById('photo');
-    image.style.width = `${size}px`;
-    image.style.height = 'auto';
+    elements.photo.style.width = `${size}px`;
+    elements.photo.style.height = 'auto';
 }
 
-// Adiciona o evento de clique na imagem para redirecionar ao Spotify
-document.getElementById('photo').addEventListener('click', function() {
-    window.location.href = 'https://open.spotify.com/track/2p3QvyvrdHGntOeBwQNJQP?si=416bd0c37dfe4c92';  // Link do Spotify
-});
+// Inicializar
+document.addEventListener('DOMContentLoaded', initializeEvents);
