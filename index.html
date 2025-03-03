@@ -1,46 +1,31 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" data-theme="dark">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>EXCLUSIVO para ela.</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <button class="food-button">🐟</button>
+
     <h1 id="page-title">Minha princesa 👑</h1> 
 
-    <!-- Texto inicial -->
-    <p id="text-below-photo">Quer saber quanto tempo faz que te dedico meus "Eu te amo" para você? Então:</p>
-    
-    <!-- Contador -->
-    <div id="countdown"></div>
+    <div class="container">
+        <button id="reveal-btn">Clique aqui!</button>
+    </div>
 
-    <!-- Container da foto -->
     <div id="photo-container" style="display: none;">
-        <img id="photo" src="imagem.jpg" alt="Surprisa" style="cursor: pointer;">
+        <img id="photo" src="imagem.jpg" alt="Surpresa" style="cursor: pointer;">
     </div>
 
-    <!-- Texto final - removido do footer -->
-    <p id="text-below-countdown">
-        Enfrentamos muitas coisas durante esse tempo que passamos juntos, depois de muito tempo conseguimos finalmente nos ver aos finais de semana.
-        Sabemos que brigas são normais e que não podemos deixar isso abalar nosso relacionamento.
-        Apesar de todo atrito que tivemos, temos e vamos ter, EU TE AMO, é um amor que realmente é sem explicação, é um amor tão imenso que estando com você horas parecem segundos.
-    </p>
-
-    <!-- Botão de tema -->
-    <div id="mode-toggle">
-        <span id="sun-icon">🌞</span>
-        <span id="moon-icon">🌙</span>
+    <div id="spotify-link" style="display: none;">
+        <a href="https://www.spotify.com" target="_blank"></a>
     </div>
 
-    <!-- Outros elementos -->
-    <div id="clouds">
-        <div class="cloud" style="top: 50px; animation-duration: 80s;"></div>
-        <div class="cloud" style="top: 200px; animation-duration: 120s;"></div>
-        <div class="cloud" style="top: 400px; animation-duration: 60s;"></div>
     <div id="footer" style="display: none;">
         <p id="text-below-photo">Quer saber quanto tempo faz que te dedico meus "Eu te amo" para você? Então:</p>
-        <div id="countdown"></div>
+        <div id="countdown"></div> <!-- Aqui vai o contador -->
         <div id="footer-container">
             <p id="text-below-countdown">
                 Enfrentamos muitas coisas durante esse tempo que passamos juntos, depois de muito tempo conseguimos finalmente nos ver aos finais de semana.
@@ -50,23 +35,13 @@
         </div>
     </div>
 
-    <!-- Botões para alternar entre o modo claro e escuro -->
-    <div id="mode-toggle">
-        <span id="sun-icon" style="cursor: pointer;">🌞</span>
-        <span id="moon-icon" style="cursor: pointer;">🌙</span>
-    </div>
-    <div id="clouds">
-        <div class="cloud" style="top: 50px; animation-duration: 80s;"></div>
-        <div class="cloud" style="top: 200px; animation-duration: 120s;"></div>
-        <div class="cloud" style="top: 400px; animation-duration: 60s;"></div>
-        
-    </div>
     <div id="hearts"></div>
-    <div id="oneko-container">
-        <div id="oneko"></div> <!-- Div para o Oneko -->
-    </div>
 
-    <script src="oneko.js"></script>  <!-- Inclui o script do Oneko -->
-    <script src="script.js"></script> <!-- Inclui o script principal -->
+    <script src="theme.js"></script>
+    <script src="clouds.js"></script>
+    <script src="script.js"></script>
+    <script src="stars.js"></script>
+    <script src="oneko.js"></script>
+    <script src="food.js"></script>
 </body>
 </html>

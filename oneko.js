@@ -1,9 +1,10 @@
 (function oneko() {
     const nekoEl = document.createElement("div");
-    let nekoPosX = 32;
-    let nekoPosY = 32;
-    let mousePosX = 0;
-    let mousePosY = 0;
+    window.neko = nekoEl;
+    window.nekoPosX = 32;
+    window.nekoPosY = 32;
+    window.mousePosX = 0;
+    window.mousePosY = 0;
     let frameCount = 0;
     let idleTime = 0;
     let idleAnimation = null;
@@ -55,15 +56,17 @@
             [-1, -1],
         ],
     };
+
     function create() {
         nekoEl.id = "oneko";
         nekoEl.style.width = "32px";
         nekoEl.style.height = "32px";
         nekoEl.style.position = "fixed";
-        nekoEl.style.backgroundImage = "url('./assets/js/oneko.gif')";
+        nekoEl.style.backgroundImage = "url('/assets/js/oneko.gif')";
         nekoEl.style.imageRendering = "pixelated";
         nekoEl.style.left = "16px";
         nekoEl.style.top = "16px";
+        nekoEl.style.zIndex = "999";
 
         document.body.appendChild(nekoEl);
 
@@ -88,7 +91,6 @@
     function idle() {
         idleTime += 1;
 
-        // every ~ 20 seconds
         if (
             idleTime > 10 &&
             Math.floor(Math.random() * 200) == 0 &&
@@ -139,7 +141,6 @@
 
         if (idleTime > 1) {
             setSprite("alert", 0);
-            // count down after being alerted before moving
             idleTime = Math.min(idleTime, 7);
             idleTime -= 1;
             return;
